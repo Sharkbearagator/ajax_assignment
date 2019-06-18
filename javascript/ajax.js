@@ -46,23 +46,22 @@ $.ajax({
     $(button).on("click", function(){
         $("#gifs").empty();
         var buttonId = this.innerText;
-        debugger;
-//put that into our api request
+
 var queryUrl = "https://api.giphy.com/v1/gifs/search?api_key=v5udxlrA4xygbwK590k94UltZ3rV6ohA&q="+ buttonId +"&limit=10&offset=0&rating=PG&lang=en"
-//ajax function
+
 $.ajax({
     url: queryUrl,
     method: "GET"
 }).then(function(response) {
-    //get the result and log it
+    
     console.log(response);
-    // grab the gifs urls from the response
+    
     for(var i = 0; i < response.data.length; i++){
     var gifUrl = response.data[i].images.fixed_height.url
     console.log(gifUrl);
     var gifDiv = $("<div>");
     var gifs = $("<img>");
-    //add rating to the gifs
+    
     var p = $("<p>").text("Rating: " + response.data[i].rating);
     console.log(p);
     gifs.attr("src" , gifUrl);
@@ -70,20 +69,11 @@ $.ajax({
     gifDiv.prepend(gifs)
     console.log(gifDiv);
     gifDiv.prepend(p)
-     //print them in new image divs
+     
     $("#gifs").prepend(p);
     $("#gifs").prepend(gifDiv);
     } 
-    // //create buttons of the users past searches and have them return the past search when clicked
-    // var button = $("<button>");
-    // button.attr(gifUrl);
-    // button.attr("id" , userInput);
-    // button.text(userInput);
-    // $("#buttons").prepend(button);
-    // console.log(button);
-    // $(button).on("click", function(){
-        
-    // })
+    
         });    
     });
 
@@ -91,6 +81,6 @@ $.ajax({
 
     })
         });    
-    // });
+
 
 
