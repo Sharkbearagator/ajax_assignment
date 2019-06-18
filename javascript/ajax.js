@@ -18,15 +18,25 @@ $.ajax({
 }).then(function(response) {
     //get the result and log it
     console.log(response);
+    // grab the gifs urls from the response
+    for(var i = 0; i < response.data.length; i++){
+    var gifUrl = response.data[i].images.fixed_height.url
+    console.log(gifUrl);
+    var gifDiv = $("<div>");
+    var gifs = $("<img>");
+    //add rating to the gifs
+    var p = $("<p>").text("Rating: " + response.data[i].rating);
+    console.log(p);
+    gifs.attr("src" , gifUrl);
+    console.log(gifs);
+    gifDiv.prepend(gifs)
+    console.log(gifDiv);
+    gifDiv.prepend(p)
+     //print them in new image divs
+    $("#gifs").prepend(p);
+    $("#gifs").prepend(gifDiv);
+    } 
 });
-
-
-// grab the gifs urls from the response
-
-//print them in new image divs
-
-//add rating to the gifs
-
 //create buttons of the users past searches
     
 
